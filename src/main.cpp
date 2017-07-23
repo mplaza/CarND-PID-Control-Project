@@ -39,8 +39,6 @@ int twiddlePIndex = 0;
 
 std::vector<double> twiddle( double calcErr){
 
-  
-
   std::cout << "BEGIN TWIDDLE" << p[0] << " " << p[1] << std::endl;
     double err = calcErr;
 
@@ -95,10 +93,8 @@ std::vector<double> twiddle( double calcErr){
 
     twiddleStep = newTwiddlePart;
     
-    
-
-    
-    
+  
+  // had to adjust this code to work with simulator so translated to above
     // while ( (dp[0] + dp[1] + dp[2]) > tolerance) {
     //   std::cout << "HIGHER THAN TOLERANCE" << std::endl;
     //   for( int i = 0; i < p.size(); i++){
@@ -277,6 +273,8 @@ int main()
 // commented out for nontuning run
   // double err = twiddleRun();
   // std::vector<double> p= twiddle();
+
+  // Kp, Ki, and Kd are initialized above in the p vector as -0.135, 0.0 , -3.19;
   pid.Init(p[0], p[1], p[2]);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
