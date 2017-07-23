@@ -17,6 +17,9 @@ public:
   double Ki;
   double Kd;
 
+  double twiddle_it;
+  double calc_err;
+
   /*
   * Constructor
   */
@@ -35,12 +38,16 @@ public:
   /*
   * Update the PID error variables given cross track error.
   */
-  void UpdateError(double cte);
+  void UpdateError(double cte );
 
   /*
   * Calculate the total PID error.
   */
   double TotalError();
+
+  double TwiddleIteration();
+
+  double CalcError( double cte );
 };
 
 #endif /* PID_H */

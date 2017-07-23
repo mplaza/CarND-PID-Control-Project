@@ -2,6 +2,32 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+##RUBRIC QUESTIONS
+
+**Effect each of the P, I, D components had in your implementation:
+
+P - proportional controller. It causes the car to steer in a direction proportionally opposite to the cross track error to minimize the cross track error. When this was excluded, the car didn't steer at all and would run off the side of the road.
+
+D - derivative of the CTE. when the error is already being reduced, the car countersteers, avoiding the overshoot and oscillations that prevent the car from staying on the centerline. when this was removed. the car weaved back and forth across the road
+
+I - integral of CTE over time. This is used to correct for steering bias, like wheel alignment issues. the coefficient for this was very small in the simulator because there wasn't much bias, but without any correction with larger biases the object would have a sustained cross track error that wasn't minimized, putting it consistently off center.
+
+**Describe how the final hyperparameters were chosen:
+
+I first started to implement twiddle, but without choosing the right starting parameters, the car would veer off the road and get stuck and so there was little improvement between these each of the new error calculations and it was taking a long time. The simulator was run from 100-300 steps to calculate the total error for twiddle and the simulator was reset between twiddle iterations because when the car was off the track the CTE wasn't useful. To speed this up, I also observed the cars behavior and so tuned manually and with twiddle. 
+
+With a small proportially coefficient, the car was turning to the right too strongly, and eventually a small negative coefficient worked best. Also the car was oscillating a lot until a larger i coefficient was used. There didn't seem to be a way the car was always pulling towards so the bias coefficient was close to zero.
+
+The bias seemed small, a small coefficient was needed for the proportional controller and a larger coefficient was needed for the integral term to reduce oscillations. 
+
+
+
+
+
+
+
+
+
 
 ## Dependencies
 
